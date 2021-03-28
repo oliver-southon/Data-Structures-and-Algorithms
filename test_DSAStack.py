@@ -43,8 +43,8 @@ if __name__ == "__main__":
     unittest.main()
 
     # COMMENT OUT Line 41 to run the below code... ---- tests push and top methods
-    my_test = DSAStack()
-    print("Top value is: " + str(my_test.top()) + '\n')
-    my_test.push(1)
-    print("Adding 1")
-    print("Top value is now: " + str(my_test.top()))
+    # my_test = DSAStack()
+    # print("Top value is: " + str(my_test.top()) + '\n')
+    # my_test.push(1)
+    # print("Adding 1")
+    # print("Top value is now: " + str(my_test.top()))

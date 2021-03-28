@@ -1,6 +1,6 @@
 import numpy as np
 
-class DSAQueue:
+class DSAQueue(object):
     default_cap = 100
 
     def __init__(self):
@@ -112,18 +112,8 @@ class DSACircularQueue(DSAQueue):
 # print(Q.queue)
 # print(Q.peek())
 
-# Q = DSACircularQueue()
-# Q.set_default_capacity(3)
-# print(Q.queue)
-# Q.enqueue(1)
-# Q.enqueue(2)
-# Q.enqueue(3)
-# print(Q.queue)
-# Q.dequeue()
-# print(Q.queue)
-# Q.enqueue(1)
-# print(Q.queue)
-# # print(Q.count)
+
+# print(Q.count)
 # # Q.printStuff()
 
 # # Q.enqueue(1)

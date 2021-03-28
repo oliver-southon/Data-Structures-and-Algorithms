@@ -23,6 +23,12 @@ class TestDSAQueue(unittest.TestCase):
         result = test.peek()
         self.assertEqual(result, 1)
 
+    def test_circular_enqueue(self): # also tests peek
+        test = DSACircularQueue()
+        test.enqueue(1)
+        result = test.peek()
+        self.assertEqual(result, 1)
+
     def test_shuffle_dequeue(self):
         test = DSAShuffleQueue()
         test.set_default_capacity(3)
@@ -36,6 +42,23 @@ class TestDSAQueue(unittest.TestCase):
             testQueue.append(el)
 
         testArr = [2, 3, None]
+        result = (testArr == testQueue)
+        self.assertEqual(result, True)
+
+    def test_shuffle_dequeue(self):
+        Q = DSACircularQueue()
+        Q.set_default_capacity(3)
+        Q.enqueue(1)
+        Q.enqueue(2)
+        Q.enqueue(3)
+        Q.dequeue()
+        Q.enqueue(1)
+
+        testQueue = []
+        for el in Q.queue:
+            testQueue.append(el)
+
+        testArr = [1, 2 ,3]
         result = (testArr == testQueue)
         self.assertEqual(result, True)
 
