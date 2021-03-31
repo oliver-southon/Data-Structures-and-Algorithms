@@ -29,9 +29,11 @@ class DSAQueue(object):
         return topVal
 
 class DSAShuffleQueue(DSAQueue):
+# -- CONSTRUCTOR -- #
     def __init__(self):
-        super().__init__()
+        DSAQueue.__init__(self) # to borrow properties and methods from parent class (may not be necessary)
 
+# -- MUTATORS -- #
     def enqueue(self, value): # "insert"
         if self.isFull():
             print("Shuffle queue is full.\n")
@@ -61,62 +63,52 @@ class DSAShuffleQueue(DSAQueue):
             self.count -= 1
 
 class DSACircularQueue(DSAQueue):
-      #Constructor
+# -- CONSTRUCTOR - -#
     def __init__(self):
-        super().__init__()
+        self.queue = []
+        self.maxSize = 0
         self.head = 0
         self.tail = 0
-        self.maxSize = self.default_cap
 
-    #Adding elements to the queue
-    def enqueue(self,data):
-        if self.size() == self.maxSize-1:
-            print ("Queue Full!")
-        elif (self.head != 0): # if it has been dequeued
-            self.queue[self.head-1] = data
+# -- SETTERS - -#
+    def set_default_capacity(self, cap):
+        self.maxSize = cap
+
+# -- GETTERS -- #
+    def peek(self):
+        if self.getSize() == 0:
+            print("DSA Queue is empty.")
+            topVal = None
         else:
-            self.queue[self.count] = data
-            self.tail = (self.tail + 1) % self.maxSize
-            self.count += 1
+            topVal = self.queue[self.head]
+        return topVal
 
-    #Removing elements from the queue
+    def getSize(self):
+        if self.tail >= self.head:
+            size = self.tail - self.head
+        else:
+            size = self.maxSize - (self.head - self.tail)
+        # return the size of the queue
+        return size
+
+# -- MUTATORS -- #
+    def enqueue(self, value):
+        if self.getSize() == (self.maxSize - 1):
+            print("Circular Queue is full!")
+        else:
+            self.queue.append(value) # add to queue
+            self.tail = (self.tail+1) % self.maxSize # increment tail
+
+        # remove element from the queue
     def dequeue(self):
-        if self.size()==0:
-            print("Queue Empty!") 
+        if self.getSize() == 0:
+            print("Queue is empty!")
+            headVal = None
         else:
-            data = self.queue[self.head]
-
-            for element in self.queue:
-                if element == data:
-                    self.queue[element-1] = None
-
-            self.head = (self.head + 1) % self.maxSize
-            self.count -= 1
-        return data
-
-    #Calculating the size of the queue
-    def size(self):
-        if self.tail>=self.head:
-            return (self.tail-self.head)
-        return (self.maxSize - (self.head-self.tail))
-
-# Q = DSAShuffleQueue()
-# Q.set_default_capacity(5)
-# Q.enqueue(1)
-# Q.enqueue(2)
-# Q.enqueue(3)
-# print(Q.queue)
-# print(Q.queue)
-# print(Q.peek())
-# Q.dequeue()
-# print(Q.queue)
-# print(Q.peek())
+            headVal = self.queue[self.head] # get head val
+            self.head = (self.head+1) % self.maxSize # increment head
+        return headVal
 
 
-# print(Q.count)
-# # Q.printStuff()
-
-# # Q.enqueue(1)
-# # print(Q.queue)
 
 
