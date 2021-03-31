@@ -27,7 +27,7 @@ class DSAStack:
     def pop(self):
         topVal = self.top()
         self.stack[self.count-1] = None
-        self.count =- 1
+        self.count -= 1
         return topVal
 
     def top(self):
